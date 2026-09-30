@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vaibhav Yadav · Computer Science, Psychology & Finance</title>
+<meta name="description" content="Vaibhav Yadav: B.Tech (CS & Social Sciences, IIIT Delhi) and MBA candidate (Business Economics, University of Delhi). Analyst, AI/ML, psychology, talent intelligence and blockchain.">
+<meta property="og:title" content="Vaibhav Yadav · Resume">
+<meta property="og:description" content="Drag the map. Explore how code, psychology and finance fit together.">
+<meta name="theme-color" content="#EEF1EE">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#EEF1EE; --paper-2:#E3E8E3; --ink:#1F2328; --muted:#5A636B;
+  --blue:#2F4BFF; --red:#E8453C; --sticky:#FFD64A; --sticky-ink:#2A2200;
+  --grid:rgba(31,35,40,.08); --card:#FFFFFF; --radius:14px;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --paper:#14171B; --paper-2:#1C2026; --ink:#E9ECEF; --muted:#9AA4AD;
+  --blue:#7C8CFF; --red:#FF7A70; --grid:rgba(233,236,239,.08); --card:#1C2026;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+
+/* scroll progress (scroll-driven animation, progressive enhancement) */
+.progress{position:fixed;inset:0 0 auto 0;height:4px;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:50}
+@supports (animation-timeline:scroll()){
+  .progress{animation:grow linear both;animation-timeline:scroll(root)}
+  @keyframes grow{to{transform:scaleX(1)}}
+}
+
+/* top bar */
+header.bar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--grid)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
+.logo{font:800 1.25rem var(--display);letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.bar nav{display:flex;gap:.4rem;align-items:center}
+.btn{font:600 .95rem var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  padding:.5rem .9rem;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;gap:.5rem;align-items:center;
+  transition:transform .15s,background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.solid{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+kbd{font:600 .75rem var(--body);border:1px solid currentColor;border-radius:5px;padding:0 .35rem;opacity:.7}
+
+/* hero */
+.hero{padding:clamp(2rem,6vw,4.5rem) 0 2rem}
+h1{font:800 clamp(2.4rem,7vw,5.2rem)/.98 var(--display);letter-spacing:-.035em;margin:0 0 1.2rem;max-width:16ch}
+h1 span.mark{background:linear-gradient(transparent 62%,var(--sticky) 62% 92%,transparent 92%)}
+.lede{max-width:56ch;color:var(--muted);font-size:1.2rem;margin:0 0 1.5rem}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem}
+
+/* the org chart board: the one memorable thing */
+.board{position:relative;height:clamp(380px,62vw,520px);margin-top:2.2rem;border:2px solid var(--ink);border-radius:var(--radius);
+  background:
+    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/32px 32px,
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/32px 32px,
+    var(--card);
+  overflow:hidden;touch-action:none;user-select:none}
+.board svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.board line{stroke:var(--ink);stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.65}
+.board .hint{position:absolute;left:1rem;bottom:.8rem;font:600 1.35rem var(--hand);color:var(--red);transform:rotate(-2deg);pointer-events:none}
+.node{position:absolute;left:50%;top:50%;translate:-50% -50%;cursor:grab;border:0;font:600 1.45rem/1 var(--hand);
+  padding:.9rem 1.1rem;background:var(--sticky);color:var(--sticky-ink);border-radius:4px 4px 14px 4px;
+  box-shadow:0 1px 0 rgba(0,0,0,.25),0 10px 18px -8px rgba(0,0,0,.35);rotate:var(--r,0deg);
+  transition:left .9s cubic-bezier(.2,1.2,.3,1),top .9s cubic-bezier(.2,1.2,.3,1),box-shadow .2s,scale .2s;touch-action:none}
+.node small{display:block;font:500 .72rem var(--body);opacity:.75;margin-top:.3rem}
+.node.dragging{cursor:grabbing;scale:1.08;transition:box-shadow .2s,scale .2s;z-index:5;box-shadow:0 18px 26px -10px rgba(0,0,0,.45)}
+.node.me{background:var(--blue);color:#fff;font-size:1.8rem;padding:1.1rem 1.5rem;border-radius:50px}
+.node.ghost{background:var(--paper-2);color:var(--ink);font-size:1.1rem;padding:.55rem .8rem;box-shadow:none;border:1.5px dashed var(--muted)}
+.node.ghost small{display:none}
+
+/* sections */
+section{padding:clamp(3rem,7vw,5rem) 0;border-top:1px solid var(--grid)}
+h2{font:800 clamp(1.8rem,4vw,2.6rem)/1.05 var(--display);letter-spacing:-.025em;margin:0 0 1.6rem}
+.flash{animation:flash 1.2s ease}
+@keyframes flash{30%{background:color-mix(in srgb,var(--sticky) 45%,transparent)}}
+
+.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:3px solid var(--ink);display:grid;gap:2rem}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:calc(-1.6rem - 9px);top:.55rem;width:15px;height:15px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--red)}
+.role{font:700 1.3rem var(--display);margin:0}
+.meta{color:var(--muted);font-size:.95rem;margin:.1rem 0 .6rem}
+.timeline ul{margin:0;padding-left:1.1rem;max-width:70ch}
+.timeline li li::before{display:none}
+
+.impact{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.stamp{border:2.5px solid var(--red);color:var(--red);border-radius:10px;padding:1rem 1.1rem;rotate:var(--r,0deg);
+  font:700 1.05rem/1.25 var(--display)}
+.stamp b{display:block;font-size:2.4rem;letter-spacing:-.03em}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.1rem}
+.proj{border:2px solid var(--ink);border-radius:var(--radius);padding:1.2rem;background:var(--card);display:flex;flex-direction:column;gap:.5rem;
+  transition:translate .2s,box-shadow .2s}
+.proj:hover{translate:-3px -3px;box-shadow:6px 6px 0 var(--blue)}
+.proj h3{font:700 1.2rem/1.2 var(--display);margin:0}
+.proj .tag{font-size:.85rem;color:var(--muted)}
+.proj p{margin:0;font-size:.98rem}
+.proj .stack{margin-top:auto;padding-top:.4rem;display:flex;flex-wrap:wrap;gap:.35rem}
+.proj .stack span{font-size:.8rem;border:1.2px solid var(--ink);border-radius:999px;padding:.05rem .6rem}
+.beyond{display:grid;gap:.9rem;max-width:70ch}
+.beyond b{font-family:var(--display)}
+.skills{display:flex;flex-wrap:wrap;gap:.6rem}
+.chip{border:1.5px solid var(--ink);border-radius:999px;padding:.35rem .9rem;font-weight:500;background:var(--card);
+  transition:background .15s,color .15s,transform .15s}
+.chip:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+.edu{display:grid;gap:.4rem}
+
+form{display:grid;gap:1rem;max-width:560px}
+label{font-weight:600;font-size:.95rem;display:grid;gap:.3rem}
+input,textarea{font:inherit;color:inherit;background:var(--card);border:1.5px solid var(--ink);border-radius:10px;padding:.7rem .9rem}
+textarea{min-height:130px;resize:vertical}
+.hp{position:absolute;left:-9999px}
+#status{min-height:1.5em;font-weight:600}
+#status.err{color:var(--red)}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
+
+/* command palette */
+dialog{border:2px solid var(--ink);border-radius:var(--radius);padding:0;width:min(520px,92vw);background:var(--card);color:var(--ink);margin-top:12vh}
+dialog::backdrop{background:rgba(10,12,14,.55);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .18s ease-out}
+@keyframes pop{from{transform:translateY(-8px) scale(.98);opacity:0}}
+#q{width:100%;border:0;border-bottom:1.5px solid var(--grid);border-radius:0;padding:1rem;font-size:1.1rem;background:transparent}
+#q:focus-visible{outline:none}
+#list{list-style:none;margin:0;padding:.4rem;max-height:50vh;overflow:auto}
+#list li{padding:.6rem .8rem;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between}
+#list li[aria-selected="true"]{background:var(--blue);color:#fff}
+
+/* theme toggle: circular reveal via View Transitions */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-new(root){animation:reveal .7s ease-in-out}
+@keyframes reveal{from{clip-path:circle(0 at var(--x,50%) var(--y,0))}to{clip-path:circle(150% at var(--x,50%) var(--y,0))}}
+
+@media (max-width:640px){.bar .hide-sm{display:none}.node{font-size:1.15rem;padding:.6rem .8rem}.node.me{font-size:1.4rem}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media print{
+  .bar,.progress,.board,.hero .cta,form,#contact,dialog,.hint{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}section{padding:1rem 0;break-inside:avoid}
+  .stamp{rotate:0deg}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" id="logo">yn.</a>
+    <nav aria-label="Main">
+      <button class="btn hide-sm" id="openPalette" aria-label="Open command menu">Jump to… <kbd>Ctrl K</kbd></button>
+      <button class="btn" id="theme" aria-label="Toggle light and dark theme">Theme</button>
+      <a class="btn solid" href="#contact">Hire me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <h1 id="headline"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="cta">
+      <a class="btn solid" href="#projects">See my projects</a>
+      <button class="btn" id="pdf">Save as PDF</button>
+    </div>
+    <div class="board" id="board" aria-label="Interactive org chart. Drag notes around, click a note to jump to that section.">
+      <svg id="wires" aria-hidden="true"></svg>
+      <span class="hint">drag me around, click a note to jump</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="experience"><h2>Where I've worked</h2><ol class="timeline" id="exp"></ol></section>
+    <section id="responsibility"><h2>Roles I hold and have held</h2><ol class="timeline" id="pos"></ol></section>
+    <section id="projects"><h2>Things I've built</h2><div class="projects" id="prj"></div></section>
+    <section id="skills"><h2>Toolkit</h2><div class="skills" id="sk"></div>
+      <h2 style="margin-top:3rem">Education</h2><ol class="timeline" id="edu"></ol>
+      <h2 style="margin-top:3rem">Off the screen</h2><div class="beyond" id="bey"></div></section>
+    <section id="contact">
+      <h2>Let's talk</h2>
+      <form id="form" novalidate>
+        <label>Your name <input name="name" autocomplete="name" required></label>
+        <label>Email <input name="email" type="email" autocomplete="email" required></label>
+        <label>Your message <textarea name="message" required></textarea></label>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn solid" type="submit" style="justify-self:start">Send message</button>
+        <div id="status" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<dialog id="palette" aria-label="Command menu">
+  <input id="q" placeholder="Jump to a section or run an action" autocomplete="off" aria-label="Search commands">
+  <ul id="list" role="listbox"></ul>
+</dialog>
+
+<script>
+/* =====================  EDIT YOUR DETAILS HERE  ===================== */
+const ME = {
+  name: "Vaibhav Yadav",
+  first: "Vaibhav",
+  email: "vaibhavyadav2027@dbe-du.org",
+  linkedin: "",            // paste your LinkedIn URL here; leave "" to hide it
+  headline: "I build across code, minds and money.",
+  mark: "code, minds and money",
+  lede: "Jack of all trades, with an analyst's habits. B.Tech in Computer Science and Social Sciences from IIIT Delhi, now an MBA candidate in Business Economics at the University of Delhi. I write software, study how people think and decide, and map technology leadership talent.",
+  experience: [
+    { role: "Technology Leadership Intern", org: "Lagrange Point Intl.", when: "Jun 2026 – Jul 2026", where: "Executive search",
+      points: ["Executed talent mapping and competitive intelligence for CXO-level technology mandates.",
+               "Used Boolean search and recruiter platforms to find niche leadership talent.",
+               "Screened profiles, assessed leadership fit and benchmarked compensation.",
+               "Built talent intelligence reports, candidate pipelines and client-ready executive profiles."] },
+    { role: "Web Developer Intern", org: "Psychowellness Centre", when: "Jun 2020 – Jul 2020", where: "Website development",
+      points: ["Built and maintained the centre's website, including a dashboard.",
+               "Created website templates with HTML, CSS and Bootstrap.",
+               "Managed a MySQL database of around 2,000 rows through phpMyAdmin.",
+               "Worked with the marketing and technical teams to keep the site on-brand."] },
+    { role: "Social Media Strategist (freelance, part-time)", org: "Essentially Sports", when: "May 2020 – Jul 2020", where: "Remote",
+      points: ["Worked with a team of 30 on a social media strategy to grow engagement, brand awareness and website traffic.",
+               "Researched audiences and competitors and turned the findings into content recommendations.",
+               "Produced and scheduled content across Facebook, Twitter, Instagram and YouTube.",
+               "Reported on performance with Google Analytics and Hootsuite Insights."] }
+  ],
+  positions: [
+    { role: "Head of Production", org: "TEDxDFBEDU", when: "Jul 2026 – Present", where: "Department of Business Economics, DU",
+      points: ["Lead AV, stage, lighting and technical production planning.",
+               "Coordinate production teams, vendors and speaker rehearsals.",
+               "Manage the run of show, technical execution and contingencies."] },
+    { role: "Senior Coordinator", org: "Synergy, The Sports and Social Service Club, DBE DU", when: "Jul 2026 – Present", where: "",
+      points: ["Facilitate team meetings and coordinate with junior members.",
+               "Organise sports events and compete in inter-college and departmental competitions."] },
+    { role: "Teaching Assistant, Attention and Perception (Psychology)", org: "IIIT Delhi", when: "Jan 2023 – May 2023", where: "Under Dr. Sonia Baloni Ray",
+      points: ["Conducted 8 tutorials and 5 interactive discussion sessions for 150 students.",
+               "Designed, administered and graded quizzes, assignments, projects and exams."] }
+  ],
+  projects: [
+    { t: "Patient Database Management System", tag: "FCS project, IIITD · Aug–Dec 2022 · guided by Dr. Arun Balaji Buduru",
+      d: "A web app for hospital staff to create and manage patient records, secured with password protection, encryption and access control. Blockchain verifies medical reports and prescriptions.",
+      stack: ["Security","Cryptography","Blockchain"] },
+    { t: "Decentralized Library Management System", tag: "IBC project, IIITD · Aug–Dec 2021 · guided by Dr. Donghoon Chang",
+      d: "A dApp on Ethereum where users borrow, return and search library items with their wallets. No intermediaries; lending is transparent and immutable.",
+      stack: ["Solidity","Ethereum","Smart contracts"] },
+    { t: "Financial Analysis of DLF Ltd.", tag: "Foundation of Finance · Oct–Dec 2021 · guided by Prof. Pankaj Vajpayee",
+      d: "Five years of balance sheets analysed through financial ratios, with charts on profitability, liquidity and solvency.",
+      stack: ["Excel","R","Finance"] },
+    { t: "SOS Smart Band", tag: "PIS project, IIITD · Sep–Dec 2019 · guided by Dr. Aman Parnami",
+      d: "A wearable that sends an SOS message with the wearer's location to an emergency contact and tracks heart and pulse rate. A companion app handles settings and health data.",
+      stack: ["Arduino","Sensors","Bluetooth"] },
+    { t: "Live Lyrics for Spotify", tag: "Personal project · Nov–Dec 2021",
+      d: "A Python script that reads the song currently playing on Spotify through its API and fetches the lyrics in real time.",
+      stack: ["Python","Spotify API"] }
+  ],
+  skills: ["Python","C","C++","Java","MATLAB","HTML/CSS","JavaScript","Solidity","R","SQL","Prolog",
+           "AI & ML","Excel","Power BI","Talent mapping","Boolean search","Cryptography","Git","Docker","Linux","Bootstrap","LaTeX","Protege"],
+  education: [
+    { role: "MBA, Business Economics", org: "Department of Business Economics, University of Delhi", when: "Pursuing · expected 2027", where: "", points: [] },
+    { role: "B.Tech, Computer Science and Social Sciences", org: "IIIT Delhi", when: "2019 – 2023", where: "",
+      points: ["Coursework spanned algorithms, operating systems, security, blockchain, AI and ML, plus psychology, econometrics, finance and sociology."] },
+    { role: "Workshop: Excel, SQL and Power BI", org: "Havish M Consulting", when: "32 hours, hands-on", where: "", points: [] },
+    { role: "Class XII (CBSE)", org: "Delhi Public School, Vasant Kunj", when: "2015 – 2017", where: "", points: [] },
+    { role: "Class X (CBSE)", org: "Venkateshwar International School, Dwarka Sector 10", when: "2013 – 2015", where: "", points: [] }
+  ],
+  beyond: [
+    "<b>Cricket.</b> Captain of the side that won gold at the NSIT Winter Sports event, 2017. Competed at district level for South-West Delhi, U-17 Inter-Zonal.",
+    "<b>Football.</b> Vice-captain of the team that won silver at the NSIT Winter Sports event, 2017. Played for DPS Vasant Kunj at the DPS Nationals (2016–17).",
+    "<b>School's Sports Captain, VIS Dwarka (2013–14).</b> Connected sports faculty and students and got house captains and classmates to take part.",
+    "Also into movies, TV, music, psychology and philosophy."
+  ]
+};
+/* ===================================================================== */
+
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- render content ---------- */
+document.title = `${ME.name} · Resume`;
+$('#headline').innerHTML = ME.headline.replace(ME.mark, `<span class="mark">${ME.mark}</span>`);
+$('#lede').textContent = ME.lede;
+$('#logo').textContent = ME.name.split(' ').map(w => w[0]).join('').toLowerCase() + '.';
+const tl = e => `
+  <li><h3 class="role">${e.role}, ${e.org}</h3>
+  <p class="meta">${e.when}${e.where ? ' · ' + e.where : ''}</p>
+  ${e.points.length ? `<ul>${e.points.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}</li>`;
+$('#exp').innerHTML = ME.experience.map(tl).join('');
+$('#pos').innerHTML = ME.positions.map(tl).join('');
+$('#edu').innerHTML = ME.education.map(tl).join('');
+$('#prj').innerHTML = ME.projects.map(p => `<article class="proj"><h3>${p.t}</h3><div class="tag">${p.tag}</div><p>${p.d}</p>
+  <div class="stack">${p.stack.map(x => `<span>${x}</span>`).join('')}</div></article>`).join('');
+$('#sk').innerHTML = ME.skills.map(s => `<span class="chip">${s}</span>`).join('');
+$('#bey').innerHTML = ME.beyond.map(t => `<div>${t}</div>`).join('');
+$('#foot').innerHTML = `${ME.name} · <a href="mailto:${ME.email}">${ME.email}</a>` +
+  (ME.linkedin ? ` · <a href="${ME.linkedin}" target="_blank" rel="noopener">LinkedIn</a>` : '');
+
+/* ---------- the org chart board ---------- */
+const board = $('#board'), wires = $('#wires');
+const NODES = [
+  { id:'me',  label: ME.first, sub:'jack of all trades', x:50, y:48, cls:'me', r:0 },
+  { id:'exp', label:'Experience', sub:'where I\'ve worked', x:20, y:20, go:'#experience', r:-3 },
+  { id:'prj', label:'Projects', sub:'things I\'ve built', x:26, y:72, go:'#projects', r:2 },
+  { id:'sk',  label:'Toolkit', sub:'skills & education', x:80, y:20, go:'#skills', r:3 },
+  { id:'con', label:'Contact', sub:'say hello', x:78, y:76, go:'#contact', r:-2 },
+  { id:'psy', label:'Psychology', x:8,  y:46, cls:'ghost', r:-2 },
+  { id:'chn', label:'Blockchain', x:52, y:90, cls:'ghost', r:2 },
+  { id:'fin', label:'Finance', x:8, y:90, cls:'ghost', r:-3 },
+  { id:'spt', label:'Football & cricket', x:88, y:48, cls:'ghost', r:3 },
+  { id:'tal', label:'Talent mapping', x:50, y:8, cls:'ghost', r:-2 },
+  { id:'ted', label:'TEDx', x:91, y:92, cls:'ghost', r:2 }
+];
+const EDGES = [['me','exp'],['me','prj'],['me','sk'],['me','con'],['psy','exp'],['chn','prj'],['fin','prj'],['spt','sk'],['tal','exp'],['ted','con']];
+const el = {};
+NODES.forEach(n => {
+  const b = document.createElement('button');
+  b.className = 'node ' + (n.cls || '');
+  b.style.setProperty('--r', n.r + 'deg');
+  b.innerHTML = n.label + (n.sub ? `<small>${n.sub}</small>` : '');
+  b.dataset.id = n.id;
+  board.appendChild(b); el[n.id] = b;
+  if (!n.go && n.id !== 'me') b.tabIndex = -1;
+});
+const lines = EDGES.map(() => { const l = document.createElementNS('http://www.w3.org/2000/svg', 'line'); wires.appendChild(l); return l; });
+
+function center(b){ const r = b.getBoundingClientRect(), o = board.getBoundingClientRect();
+  return [r.left - o.left + r.width/2, r.top - o.top + r.height/2]; }
+function drawWires(){ EDGES.forEach(([a, b], i) => { const [x1,y1] = center(el[a]), [x2,y2] = center(el[b]);
+  lines[i].setAttribute('x1',x1); lines[i].setAttribute('y1',y1); lines[i].setAttribute('x2',x2); lines[i].setAttribute('y2',y2); }); }
+function place(n, x, y){ el[n.id].style.left = x + '%'; el[n.id].style.top = y + '%'; }
+function tick(ms){ const t0 = performance.now(); (function f(){ drawWires(); if (performance.now() - t0 < ms) requestAnimationFrame(f); })(); }
+
+drawWires();
+// the one orchestrated moment: notes fly out from the centre
+requestAnimationFrame(() => setTimeout(() => { NODES.forEach(n => place(n, n.x, n.y)); tick(reduce ? 50 : 1100); }, 250));
+addEventListener('resize', drawWires);
+
+// dragging
+let drag = null, moved = false;
+board.addEventListener('pointerdown', e => {
+  const b = e.target.closest('.node'); if (!b) return;
+  const o = board.getBoundingClientRect(), r = b.getBoundingClientRect();
+  drag = { b, dx: e.clientX - (r.left + r.width/2), dy: e.clientY - (r.top + r.height/2), o }; moved = false;
+  b.classList.add('dragging'); b.setPointerCapture(e.pointerId);
+});
+board.addEventListener('pointermove', e => {
+  if (!drag) return; moved = true;
+  const { b, dx, dy, o } = drag;
+  const x = Math.min(96, Math.max(4, (e.clientX - dx - o.left) / o.width * 100));
+  const y = Math.min(94, Math.max(6, (e.clientY - dy - o.top) / o.height * 100));
+  b.style.left = x + '%'; b.style.top = y + '%'; drawWires();
+});
+const endDrag = () => { if (drag) { drag.b.classList.remove('dragging'); drag = null; } };
+board.addEventListener('pointerup', endDrag); board.addEventListener('pointercancel', endDrag);
+board.addEventListener('click', e => {
+  const b = e.target.closest('.node'); if (!b || moved) return;
+  const n = NODES.find(n => n.id === b.dataset.id); if (n && n.go) goTo(n.go);
+});
+
+function goTo(sel){ const t = $(sel); if (!t) return; t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash'); }
+
+/* ---------- theme with circular reveal ---------- */
+function setTheme(t){ document.documentElement.dataset.theme = t; localStorage.setItem('theme', t);
+  document.querySelector('meta[name=theme-color]').content = t === 'dark' ? '#14171B' : '#EEF1EE'; setTimeout(drawWires, 0); }
+try { const s = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); setTheme(s); } catch(e){}
+function toggleTheme(ev){
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  if (!document.startViewTransition || reduce) return setTheme(next);
+  const r = ev && ev.currentTarget ? ev.currentTarget.getBoundingClientRect() : { left: innerWidth/2, top: 0, width: 0, height: 0 };
+  document.documentElement.style.setProperty('--x', (r.left + r.width/2) + 'px');
+  document.documentElement.style.setProperty('--y', (r.top + r.height/2) + 'px');
+  document.startViewTransition(() => setTheme(next));
+}
+$('#theme').addEventListener('click', toggleTheme);
+
+/* ---------- command palette (Ctrl/Cmd + K) ---------- */
+const dlg = $('#palette'), q = $('#q'), list = $('#list');
+const COMMANDS = [
+  { t:'Experience', k:'Section', run:() => goTo('#experience') },
+  { t:'Roles and responsibilities', k:'Section', run:() => goTo('#responsibility') },
+  { t:'Projects', k:'Section', run:() => goTo('#projects') },
+  { t:'Toolkit and education', k:'Section', run:() => goTo('#skills') },
+  { t:'Contact', k:'Section', run:() => goTo('#contact') },
+  { t:'Toggle light / dark theme', k:'Action', run:() => toggleTheme() },
+  { t:'Save resume as PDF', k:'Action', run:() => print() },
+  { t:'Copy my email', k:'Action', run:() => navigator.clipboard && navigator.clipboard.writeText(ME.email) },
+  ...(ME.linkedin ? [{ t:'Open LinkedIn', k:'Link', run:() => open(ME.linkedin, '_blank', 'noopener') }] : [])
+];
+let shown = [], sel = 0;
+function renderList(){ const f = q.value.toLowerCase(); shown = COMMANDS.filter(c => c.t.toLowerCase().includes(f)); sel = 0;
+  list.innerHTML = shown.map((c, i) => `<li role="option" data-i="${i}" aria-selected="${i === 0}">${c.t}<small>${c.k}</small></li>`).join('')
+    || '<li>No match. Try "projects" or "contact".</li>'; }
+function mark(){ [...list.children].forEach((li, i) => li.setAttribute('aria-selected', i === sel)); }
+function openPalette(){ q.value = ''; renderList(); dlg.showModal(); q.focus(); }
+function run(i){ const c = shown[i]; if (!c) return; dlg.close(); setTimeout(c.run, 50); }
+addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dlg.open ? dlg.close() : openPalette(); } });
+$('#openPalette').addEventListener('click', openPalette);
+q.addEventListener('input', renderList);
+q.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown') { sel = Math.min(shown.length - 1, sel + 1); mark(); e.preventDefault(); }
+  if (e.key === 'ArrowUp') { sel = Math.max(0, sel - 1); mark(); e.preventDefault(); }
+  if (e.key === 'Enter') run(sel);
+});
+list.addEventListener('click', e => { const li = e.target.closest('li[data-i]'); if (li) run(+li.dataset.i); });
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+$('#pdf').addEventListener('click', () => print());
+
+/* ---------- contact form -> /api/contact (Vercel serverless function) ---------- */
+$('#form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, s = $('#status'), data = Object.fromEntries(new FormData(f));
+  s.className = '';
+  if (!data.name || !/^\S+@\S+\.\S+$/.test(data.email || '') || !data.message) { s.className = 'err'; s.textContent = 'Please fill in your name, a valid email, and a message.'; return; }
+  s.textContent = 'Sending…';
+  try {
+    const r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || 'failed');
+    s.textContent = 'Sent. I will reply within a day.'; f.reset();
+  } catch (err) {
+    s.className = 'err';
+    s.innerHTML = `Could not send from the site. <a href="mailto:${ME.email}?subject=${encodeURIComponent('Hello from your resume site')}&body=${encodeURIComponent(data.message || '')}">Email me directly</a>.`;
+  }
+});
+</script>
+</body>
+</html>
